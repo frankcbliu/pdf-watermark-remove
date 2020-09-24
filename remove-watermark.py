@@ -82,8 +82,9 @@ def remove_file_in_dir(_dir):
 # main function
 if __name__ == '__main__':
     for file in os.listdir(input_dir):
-        name = os.path.splitext(file)[0]
-        convert_pdf_2_img(os.path.join(input_dir, file))
-        print('start to merge jpg files to pdf ...')
-        image2pdf(img_dir, os.path.join(output_dir, name))
-        remove_file_in_dir(img_dir)
+        if file[-4:] == '.pdf':
+            name = os.path.splitext(file)[0]
+            convert_pdf_2_img(os.path.join(input_dir, file))
+            print('start to merge jpg files to pdf ...')
+            image2pdf(img_dir, os.path.join(output_dir, name))
+            remove_file_in_dir(img_dir)
